@@ -5,27 +5,24 @@ import { useSelector, useDispatch } from "react-redux";
 const Users = () => {
   const dispatch = useDispatch();
   const users = useSelector((state) => state.users.users);
+  const loading = useSelector((state) => state.users.loading);
+  const error = useSelector((state) => state.users.error);
   useEffect(() => {
-    dispatch(
-      getUsers([
-        {
-          id: 1,
-          name: "John",
-          company: {
-            name: "ABC",
-            catchPhrase: "Multi Layered client applications",
-          },
-        },
-      ])
-    );
-  }, [dispatch]);
+    dispatch(getUsers());
+  }, []);
   console.log(users);
   return (
     <>
-      {users &&
-        users.length > 0 &&
-        users.map((user) => <Card user={user} key={user.id} />)}
-      {users.length === 0 && <p>No Users Found</p>}
+      {loading && <h2>Loading.....</h2>}
+      {users && users.map((user) => <Card user={user} key={user.id} />)}
+      {error && !loading && (
+        <>
+          <p>Failed to load response data from the server:</p>
+          <h1>
+            <b>404 NOT FOUND</b>
+          </h1>
+        </>
+      )}
     </>
   );
 };

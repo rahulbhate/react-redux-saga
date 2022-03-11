@@ -1,12 +1,16 @@
 import React from "react";
 import styled from "styled-components";
+
 const Container = styled.div`
   display: flex;
-  width: 200px;
-  height: 150px;
   border: 1px solid gray;
   border-radius: 15px;
-  justify-content: space-around;
+  justify-content: center;
+  margin: auto;
+  margin-bottom: 20px;
+  padding: auto;
+  align-items: center;
+
   color: ${(props) => props.color};
 `;
 
@@ -18,8 +22,8 @@ const Card = ({ ...props }) => {
   return (
     <Container>
       <Content>
-        <h1>{props.user.name}</h1>
-        <h2>{props.user.company.name}</h2>
+        <p>{props.user.name}</p>
+        <p>{props.user.company.name}</p>
         <p>{props.user.company.catchPhrase}</p>
       </Content>
     </Container>

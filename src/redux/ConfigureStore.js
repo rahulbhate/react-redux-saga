@@ -9,11 +9,11 @@ export default function ConfigureStore(initialState) {
   const composeEnhancers =
     window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose; // add support for Redux dev tools
   console.info("Saga middleware implemented");
-
+  const middleware = [sagaMiddleware, logger];
   const store = createStore(
     rootReducer,
     initialState,
-    composeEnhancers(applyMiddleware(logger, sagaMiddleware))
+    composeEnhancers(applyMiddleware(...middleware))
   );
   initSagas(sagaMiddleware);
   return store;
