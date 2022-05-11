@@ -2,7 +2,7 @@
 GENERATOR FUNCTIONS USED FROM REDUX SAGA... function*
 NOTE: CAN'T BE USED WITH ARROW FUNCTIONS. 
 ******************************************************/
-import { call, put, takeEvery } from "redux-saga/effects";
+import { call, put, takeEvery, takeLatest } from "redux-saga/effects";
 import fetchGetUsersServices from "../services/fetchUsersServices";
 
 function* handleGetUsers() {
@@ -15,5 +15,5 @@ function* handleGetUsers() {
 }
 
 export function* fetchUsersSaga() {
-  yield takeEvery("GET_USERS_REQUESTED", handleGetUsers);
+  yield takeLatest("GET_USERS_REQUESTED", handleGetUsers);
 }

@@ -16,5 +16,6 @@ export default function ConfigureStore(initialState) {
     composeEnhancers(applyMiddleware(...middleware))
   );
   initSagas(sagaMiddleware);
+  //sagaMiddleware.run([userSaga, fetchUsersSaga]);
   return store;
 }

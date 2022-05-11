@@ -18,7 +18,6 @@ const Content = styled.div`
   align-self: center;
 `;
 const Card = ({ ...props }) => {
-  console.log(props);
   return (
     <Container>
       <Content>

@@ -9,20 +9,21 @@ const Users = () => {
   const error = useSelector((state) => state.users.error);
   useEffect(() => {
     dispatch(getUsers());
-  }, []);
-  console.log(users);
+  }, [dispatch]);
   return (
     <>
       {loading && <h2>Loading.....</h2>}
       {users && users.map((user) => <Card user={user} key={user.id} />)}
       {error && !loading && (
         <>
-          <p>Failed to load response data from the server:</p>
           <h1>
-            <b>404 NOT FOUND</b>
+            <b>{error}</b>
           </h1>
         </>
       )}
+      <button onClick={() => dispatch({ type: "GET_USERS_REQUESTED" })}>
+        Get Users
+      </button>
     </>
   );
 };
